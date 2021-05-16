@@ -1,0 +1,172 @@
+\section{Problema 1}
+\subsection{} Escriba la solución del problema de Dirichlet para el primer cuadrante si
+$$
+\begin{array}{c}
+u(x, 0)=0, x>0 \\
+u(0, y)=g(y), y>0
+\end{array}
+$$
+\begin{solution}
+El problema de Dirichlet en el primer cuadrante hace referencia a: 
+$$\nabla^2(x,y)=\frac{\partial ^2 u}{\partial x^2}+\frac{\partial ^2 u}{\partial y^2}=0 \qquad x>0,y>0 $$
+
+\linea 
+
+Procedemos por separación de variables: 
+$$u(x,y)=X(x)\cdot Y(y)= X\cdot Y$$
+
+\begin{gather*}
+    \implies X''Y+Y''X = 0 \implies X''Y=-Y''X \implies \frac{X''}{X} = -\frac{Y''}{Y}=\omega^2\\
+\end{gather*}
+Por lo tanto, 
+\begin{gather}
+     X''-\omega^2 X=0 
+\end{gather}
+
+\begin{gather}
+     Y''+\omega^2 Y=0
+\end{gather}
+
+\linea 
+
+Para (1) la solución de la EDO es, 
+
+$$X_\omega(x)= A_\omega e^{-\omega x}+ B_\omega e^{\omega x}$$
+Nótese para que se generen soluciones cuando $x\to \infty$ (que se mantenga acotado), es necesario eliminar el término $B$. Por lo tanto, 
+$$X_\omega(x)= A_\omega e^{-\omega x}$$
+
+\linea 
+
+Para (2) la solución de la EDO es, 
+
+$$Y_\omega (y)= C_\omega \cos(\omega y)+D_\omega\sin(\omega y), \qquad u(x,0)=0$$
+$$\implies Y_\omega(0)= C_\omega\cos(0)+D_\omega\sin(0)=0\implies C_\omega=0$$
+$$\implies Y_\omega(y)=D_\omega\sin(\omega y)$$
+
+\linea 
+
+Es decir que tenemos,
+$$X_\omega(x)\cdot Y_\omega(y)=A_\omega e^{-\omega x}\cdot D_\omega\sin(\omega y)=F_\omega e^{-\omega x}\sin(\omega y), \quad \omega >0$$
+
+\linea 
+
+Por el principio de superposición, 
+$$u(x,y)=\int_0^\infty F_\omega e^{-\omega x}\sin(\omega y) d \omega $$
+
+Aplicando la condición $u(0,y)=g(y)$, 
+
+$$u(0,y)=g(y)=\int_0^\infty F_\omega\sin(\omega y) d \omega $$
+En donde $F_\omega$ es, 
+$$F_\omega= \frac{2}{\pi}\int_0^\infty g(\psi)\sin(\psi y)d\psi $$
+
+\linea 
+
+La solución, 
+$$u(x,y)=\int_0^\infty \left[\frac{2}{\pi}\int_0^\infty g(\psi)\sin(\psi y)d\psi\right] e^{-\omega x}\sin(\omega y) d \omega $$
+
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+%--------------------
+\subsection{} Escriba la solución del problema de Dirichlet para el primer cuadrante si
+$$
+\begin{array}{l}
+u(x, 0)=f(x), x>0 \\
+u(0, y)=g(y), y>0
+\end{array}
+$$
+
+\begin{solution}
+El problema de Dirichlet en el primer cuadrante hace referencia a: 
+$$\nabla^2(x,y)=\frac{\partial ^2 u}{\partial x^2}+\frac{\partial ^2 u}{\partial y^2}=0 \qquad x>0,y>0 $$
+ 
+Nos damos cuenta que tenemos dos casos, que en el resultado final se sumarán: 
+
+\begin{enumerate}
+    \item $$\begin{array}{l}
+u(x, 0)=0, x>0 \\
+u(0, y)=g(y), y>0
+\end{array}
+$$ Nos damos cuenta que este caso es el del inciso \textbf{1.1}. Así que no lo resolveremos. 
+\item $$\begin{array}{l}
+u(x, 0)=f(x), x>0 \\
+u(0, y)=0, y>0
+\end{array}
+$$
+
+\end{enumerate}
+
+\linea 
+
+Procedemos por separación de variables: 
+$$u(x,y)=X(x)\cdot Y(y)= X\cdot Y$$
+
+\begin{gather*}
+    \implies X''Y+Y''X = 0 \implies X''Y=-Y''X \implies -\frac{X''}{X} = \frac{Y''}{Y}=\omega^2\\
+\end{gather*}
+\setcounter{equation}{0}
+Por lo tanto, 
+
+\begin{gather}
+     Y''-\omega^2 Y=0
+\end{gather}
+\begin{gather}
+     X''+\omega^2 X=0 
+\end{gather}
+
+
+\linea 
+
+Para (1) la solución de la EDO es, 
+
+$$Y_\omega(y)= A_\omega e^{-\omega y}+ B_\omega e^{\omega y}$$
+Nótese para que se generen soluciones cuando $y\to \infty$ (que se mantenga acotado), es necesario eliminar el término $B$. Por lo tanto, 
+$$Y_\omega(y)= A_\omega e^{-\omega y}$$
+
+\linea 
+
+Para (2) la solución de la EDO es, 
+
+$$X_\omega (x)= C_\omega \cos(\omega x)+D_\omega\sin(\omega x), \qquad u(0,y)=0$$
+$$\implies X_\omega(0)= C_\omega\cos(0)+D_\omega\sin(0)=0\implies C_\omega=0$$
+$$\implies X_\omega(x)=D_\omega\sin(\omega x)$$
+
+\linea 
+
+Es decir que tenemos,
+$$X_\omega(x)\cdot Y_\omega(y)=A_\omega e^{-\omega y}\cdot D_\omega\sin(\omega x)=F_\omega e^{-\omega y}\sin(\omega x), \quad \omega >0$$
+
+\linea 
+
+Por el principio de superposición, 
+$$u(x,y)=\int_0^\infty F_\omega e^{-\omega y}\sin(\omega x) d \omega $$
+
+Aplicando la condición $u(x,0)=f(x)$, 
+
+$$u(x,0)=f(x)=\int_0^\infty F_\omega\sin(\omega x) d \omega $$
+En donde $F_\omega$ es, 
+$$F_\omega= \frac{2}{\pi}\int_0^\infty f(\psi)\sin(\psi x)d\psi $$
+
+\linea 
+
+La solución del \textbf{segundo caso}, 
+$$u(x,y)=\int_0^\infty \left[\frac{2}{\pi}\int_0^\infty f(\psi)\sin(\psi x)d\psi\right] e^{-\omega y}\sin(\omega x) d \omega $$
+
+\linea
+
+\linea 
+
+La solución final, sumando los 2 casos:
+
+$$u(x,y)= \int_0^\infty \left[\frac{2}{\pi}\int_0^\infty g(\psi)\sin(\psi y)d\psi\right] e^{-\omega x}\sin(\omega y) d \omega+$$
+$$+\int_0^\infty \left[\frac{2}{\pi}\int_0^\infty f(\psi)\sin(\psi x)d\psi\right] e^{-\omega y}\sin(\omega x) d \omega$$
+
+\end{solution}
