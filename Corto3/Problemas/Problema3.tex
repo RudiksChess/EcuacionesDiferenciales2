@@ -1,0 +1,104 @@
+\section{Problema 3}
+Si es posible, resuelva la ecuación de Laplace $\nabla^{2} u=\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}+\frac{\partial^{2} u}{\partial z^{2}}=0,0<x<a$,
+$0<y<b, 0<z<c$, sujeta a las condiciones $\frac{\partial u}{\partial x}(0, y, t)=\frac{\partial u}{\partial x}(a, y, t)=0$
+$u(x, 0, z)=u(x, b, z)=u(x, y, c)=0, u(x, y, 0)=f(x, y)$
+
+\begin{solution}
+Considérese la representación gráfica del problema:
+\input{figurasTiks/figura1_problema3}
+
+Se propone el método de separación de variables: 
+$$u(x,y,z)=X(x)\cdot Y(y)\cdot Z(z) = X\cdot Y\cdot Z$$
+Entonces: 
+$$\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}+\frac{\partial^{2} u}{\partial z^{2}}=0\implies  X''YZ+ Y''XZ+Z''XY=0$$
+$$\implies X''YZ+ X(Y''Z+Z''Y)=0 \implies X(Y''Z+Z''Y)= -X''YZ$$
+\begin{align*}
+    \implies \frac{Y''Z+Z''Y}{YZ}=-\frac{X''}{X} \implies\fbox{$\frac{Y''}{Y}+\frac{Z''}{Z}=-\frac{X''}{X}=-\lambda$}
+\end{align*}
+
+\linea 
+
+Se considera la primera ecuación: 
+$$-\frac{X''}{X}=-\lambda\implies \fbox{$X''-\lambda X=0$}$$
+Con las condiciones de frontera: 
+$$\frac{\partial u}{\partial x}\Big|_{x=0}=0,\quad \frac{\partial u}{\partial x}\Big|_{x=a}=0$$
+
+Cuando $\lambda = 0$ y $\lambda<0$ las soluciones son triviales. Para el caso de $\lambda>0$, la solución es la siguiente (considerando un intervalo \textbf{finito}): 
+$$X(x)= A\cosh \sqrt{\lambda}x+B\sinh\sqrt{\lambda}x$$
+$$X'(x) = A\sqrt{\lambda}\sinh\sqrt{\lambda}x + B\sqrt{\lambda}\cosh\sqrt{\lambda}x  $$
+
+Aplicando las condiciones de frontera: 
+
+$$X'(0)= B = 0$$
+$$X'(a)= A\sqrt{\lambda}\sinh \sqrt{\lambda}a$$
+
+La relación de $\sqrt{\lambda}a$ es la siguiente: 
+$$\sqrt{\lambda}a = \pi n\implies \sqrt{\lambda}=\frac{\pi n}{a}$$
+
+Por lo tanto, la solución de la ecuación: 
+$$X_n(x)= A\cosh \frac{\pi n}{a}x,\quad n=1,2,3,...$$
+
+\linea 
+
+Ahora bien, se tiene: $$\frac{Y''}{Y}+\frac{Z''}{Z}= -\lambda\implies \fbox{$\frac{Y''}{Y}= -\frac{Z''}{Z}-\lambda =-\mu$} $$
+
+\linea 
+
+Se considera la segunda ecuación diferencial 
+$$\frac{Y''}{Y}=-\mu \implies \fbox{$Y'' +\mu Y=0$}$$
+
+Con las condiciones de frontera: 
+$$Y(0)=0, Y(b)=0$$
+
+Nuevamente, cuando $\mu = 0$ y $\mu<0$ las soluciones son triviales. Para el caso de $\mu>0$, la solución es la siguiente: 
+$$Y(y)= C\cos \sqrt{\mu}y+D\sin \sqrt{\mu}y$$
+
+Aplicando las condiciones de frontera: 
+$$Y(0)= C= 0 $$
+$$Y(b)= D\sin \sqrt{\mu}b=0$$
+
+La relación de $\sqrt{\mu}b$ es la siguiente: 
+$$\sqrt{\mu}b=\pi m \implies \sqrt{\mu}=\frac{\pi m}{b}$$
+
+Es decir que la solución de la ecuación es: 
+
+$$Y_m(y) = \sin \frac{\pi m}{b}, \quad m=1,2,3,...$$
+
+\linea 
+
+La tercera ecuación es: 
+$$-\frac{Z''}{Z}-\lambda =-\mu\implies -Z''-\lambda Z+\mu Z = 0 \implies \fbox{$Z''+(\lambda-\mu) Z = 0 $}$$
+Las condiciones de frontera: 
+$$ Z(c)=0$$
+Nuevamente, cuando $\lambda-\mu = 0$ y $\lambda-\mu<0$ las soluciones son triviales. Para el caso de $\lambda-\mu>0$, la solución es la siguiente: 
+$$Z(z)= E\cos(\lambda-\mu)z+F\sin (\lambda -\mu)z$$
+
+Aplicando las condiciones de frontera: 
+$$Z(c)= E\cos(\lambda-\mu)c+F\sin(\lambda-\mu)c=0$$
+$$\implies E\cos(\lambda-\mu)c =-F\sin(\lambda-\mu)c\implies E=-\frac{F\sin(\lambda-\mu)c}{\cos(\lambda-\mu)c}$$
+$$\implies E= - \tan(\lambda -\mu)c$$
+
+Por lo que la solución es: 
+$$Z(z)= -\tan(\lambda-\mu)z\cdot\cos(\lambda-\mu)z+\sin (\lambda -\mu)z$$
+
+
+Se nombrará $P=\lambda -\mu$, entonces: 
+$$P= \left(\frac{\pi n}{a}\right)^2-\left(\frac{\pi m}{b}\right)^2=\pi^2\left(\frac{n^2}{a^2}-\frac{m^2}{b^2}\right)$$
+
+$$Z_{mn}(z)= -\tan \left(\frac{n^2}{a^2}-\frac{m^2}{b^2}\right)\pi^2z \cdot\cos \left(\frac{n^2}{a^2}-\frac{m^2}{b^2}\right)\pi^2z+\sin \left(\frac{n^2}{a^2}-\frac{m^2}{b^2}\right)\pi^2 z$$
+
+Ahora, por el principio de superposición tenemos que:
+
+\begin{align*}
+    u(x,y,z) &= \sum_{m=1}^\infty \sum_{n=1}^\infty A_{mn}u_{mn}(x,y,z)\\ 
+    &= A\cosh \frac{\pi n}{a}x\cdot \sin \frac{\pi m}{b}\cdot [-\tan \left(\frac{n^2}{a^2}-\frac{m^2}{b^2}\right)\pi^2z \cdot\cos \left(\frac{n^2}{a^2}-\frac{m^2}{b^2}\right)\pi^2z+\sin \left(\frac{n^2}{a^2}-\frac{m^2}{b^2}\right)\pi^2 z]
+\end{align*}
+
+Aplicando la condición inicial $z=0$: 
+
+\begin{align*}
+    f(x,y) &= \sum_{m=1}^\infty \sum_{n=1}^\infty A_{mn}u_{mn}(x,y,0)\\ 
+    &= A\cosh \frac{\pi n}{a}x\cdot \sin \frac{\pi m}{b}
+\end{align*}
+
+\end{solution}
