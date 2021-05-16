@@ -24,6 +24,12 @@
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage{svg}
+\usepackage{tikz}
+\newcommand{\lineata}{\begin{tikzpicture}
+\draw [thick,dash pattern={on 7pt off 2pt on 1pt off 3pt}] (0,0) -- (16,0);
+\end{tikzpicture}}
+\newcommand{\linea}{\noindent\rule{\textwidth}{3pt}}
+\newcommand{\linita}{\noindent\rule{\textwidth}{1pt}}
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
 \AtBeginEnvironment{align}{\setcounter{equation}{0}}
 \newenvironment{solution}
@@ -69,159 +75,13 @@
 
 %\fbox{lol}
 %---------------------------
-\section{Problema 1} 
-Funciones ortogonales
-\begin{enumerate}
-    \item  Compruebe que $f_{1}(x)=x$ y $f_{2}(x)=x^{2}$ son ortogonales en [-2, 2].
-    \begin{solution}
-    \begin{align}
-    \begin{split}
-        \langle f_1(x),f_2(x) \rangle &= \int_{-2}^2 x\cdot x^2 \diff x = \int_{-2}^2 x^3  \diff x=  \frac{1}{4} x^4 \bigg\vert_{-2}^2\\
-        &= \frac{1}{4}\left[(2)^4-(-2)^4\right]= 0 
-    \end{split}
-    \end{align}
-    $\therefore \ f_1(x),\ f_2(x)$ son ortogonales en el intervalo [-2,2]. 
-    \end{solution}
-    \item Determine las constantes $c_{1}$ y $c_{2}$ tales que $f_{3}(x)=x+c_{1} x^{2}+c_{2} x^{3}$ sea ortogonal a $f_{1}$ y $f_{2}$ en el mismo intervalo.
-    \begin{align}
-        \begin{split}
-        \langle f_3(x),f_1(x) \rangle &= \int_{-2}^2 (x+c_1x^2+c_2x^3)\cdot (x)\diff x = \int_{-2}^2 (x^2+c_1x^3+c_2x^4)\diff x\\
-        &= \frac{1}{3}x^3+\frac{c_1}{4}x^4+\frac{c_2}{5}x^5\bigg\vert_{-2}^2=\frac{1}{3}[(2)^3-(-2)^3]+\frac{c_2}{5}[(2)^5-(-2)^5]\\
-        &= \frac{1}{3}[2^4]+\frac{c_2}{5}[2^6]
-        \end{split}
-        \intertext{Se sabe que $\langle f_3(x),f_1(x) \rangle=0$, entonces:}
-        &\implies \frac{1}{3}[2^4]+\frac{c_2}{5}[2^6]=0 \implies c_2=-\frac{2^4\cdot 5}{3\cdot 2^6}=-\frac{5}{3\cdot2^2}= -\frac{5}{12}\\
-        \begin{split}
-        \langle f_3(x),f_1(x) \rangle &= \int_{-2}^2 (x+c_1x^2-\frac{5}{12}x^3)\cdot (x^2)\diff x= \int_{-2}^2 (x^3+c_1x^4-\frac{5}{12}x^5)\diff x\\
-        &= \frac{1}{4}x^4+c_1\frac{1}{5}x^5-\frac{5}{60}x^6\bigg\vert_{-2}^2= \frac{c_1}{5}[(2)^5-(-2)^5]
-        \end{split}
-        \intertext{Nuevamente, se conoce que $\langle f_3(x),f_2(x) \rangle=0$, entonces:}
-        &\implies \frac{c_1}{5}[(2)^5-(-2)^5]=0\implies c_1=0
-    \end{align}
-    \begin{center}
-    \fbox{$c_1=0$ y $c_2=-\frac{5}{12}$}
-     \end{center}
-\end{enumerate}
-\section{Problema 2} Serie de Fourier
-\begin{enumerate}
-    \item Encuentre la serie de Fourier de $f(x)=\left\{\begin{array}{lr}0, & -\pi<x<0 \\ \sin x, & 0 \leq x<\pi\end{array}\right.$
-    \begin{center}
-    \fbox{$f(x)= \frac{a_0}{2}+\sum_{n=1}^\infty\left[a_n\cos \frac{x\pi n}{L}+b_n\sin \frac{x\pi n}{L}\right]$}
-\end{center}
-\begin{align}
-    \intertext{Para $a_0$:}
-    \begin{split}
-        a_0&=\frac{1}{\pi}\int_{-\pi}^\pi f(x)\diff x = \frac{1}{\pi}\left[\int_{-\pi}^0 0\diff x+\int_0^\pi \sin x\diff x\right]=\frac{1}{\pi}\left[-\cos x\bigg\vert_0^\pi \right]\\
-        &=-\frac{1}{\pi}\left[\cos \pi-\cos 0 \right]=-\frac{1}{\pi}\left[-1-1\right]=\frac{2}{\pi}
-    \end{split}
-    \intertext{El caso base de $a_n$, i.e. $n=1$:}
-    \begin{split}
-    a_1&=\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos x \diff x = \frac{1}{\pi}\int_0^\pi \sin x\cos x \diff x = \frac{1}{2\pi}\int_0^\pi [\sin (x+x)] \diff x\\
-    &= \frac{1}{2\pi}\int_0^\pi \sin(2x)\diff x = \frac{1}{4\pi}\int_0^{2\pi} \sin u \diff u = -\frac{1}{4\pi} \left[\cos u \bigg\vert_0^{2\pi}\right]\\
-    &= -\frac{1}{4\pi} \left[\cos 2\pi -\cos 0\right]=0
-    \end{split}
-    \intertext{Para $a_n$:}
-    \begin{split}
-    a_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nx\diff x = \frac{1}{\pi}\left[\int_0^\pi \sin x\cos nx\right] \diff x \\
-    &= \frac{1}{2\pi}\left\{\int_0^\pi[\sin(x-nx)+\sin(nx+x)] \diff x \right\}\\
-    &= \frac{1}{2\pi}\left\{\int_0^\pi[\sin (1-n)x+\sin (n+1)x] \diff x \right\}\\
-    &= \frac{1}{2\pi}\left\{-\frac{1}{1-n}\cos (1-n)x - \frac{1}{n+1}\cos (n+1)x \bigg\vert_0^\pi \right\}\\
-    %-------------
-    &= \frac{1}{2\pi}\left\{-\frac{1}{1-n}[\cos (1-n)\pi - \cos 0] - \frac{1}{n+1}[\cos (n+1)\pi-\cos 0] \right\}\\
-    %-------------
-    &= -\frac{1}{2\pi}\left\{\frac{1}{1-n}[\cos (1-n)\pi - \cos 0] + \frac{1}{n+1}[\cos (n+1)\pi-\cos 0] \right\}\\
-    %---------
-    &= -\frac{1}{2\pi}\left\{\frac{1}{1-n}[(-1)^{n-1} - 1] + \frac{1}{n+1}[(-1)^{n+1}-1] \right\}\\
-    &= -\frac{1}{2\pi}\left\{\frac{(-1)^{n-1}}{1-n}-\frac{1}{1-n}+\frac{(-1)^{n+1}}{n+1}-\frac{1}{n+
-    1}\right\}\\
-    &= -\frac{1}{2\pi}\left\{\frac{(-1)(-1)^{n-1}}{n-1}+\frac{1}{n-1}+\frac{(-1)^{n+1}}{n+1}-\frac{1}{n+
-    1}\right\}\\
-    &= -\frac{1}{2\pi}\left\{\frac{(-1)^n(n+1)+(-1)^{n+1}(n-1)}{(n-1)(n+1)}+\frac{(n+1)-(n-1)}{(n-1)(n+1)}\right\}\\
-    &= -\frac{1}{2\pi}\left\{\frac{(-1)^n(n+1)+(-1)^{n}(1-n)}{(n-1)(n+1)}+\frac{2}{(n-1)(n+1)}\right\}\\
-    &= -\frac{1}{2\pi}\left\{\frac{(-1)^n[n+1+1-n]}{(n-1)(n+1)}+\frac{2}{(n-1)(n+1)}\right\}\\
-    &= -\frac{1}{2\pi}\left\{\frac{2(-1)^n+2}{n^2-1}\right\}\\
-    &= -\frac{1}{\pi}\left\{\frac{(-1)^n+1}{n^2-1}\right\}\\
-    &=\frac{1+(-1)^{n}}{\pi(1-n^2)} = \begin{cases}0 & n \text{ impar }\\ \frac{2}{\pi(1-4n^2)} & n \text{ par}\end{cases}
-    \end{split}
-    \intertext{El caso base de $b_n$, i.e $n=1$:}
-    \begin{split}
-    b_1 &= \frac{1}{\pi}\int_0^\pi \sin x \sin x\diff x = \frac{1}{\pi}\int_0^\pi \sin^2 x\diff x 
-    \\
-    &=\frac{1}{2\pi}\int_0^\pi [\cos (x-x)-\cos(x+x)]\diff x\\
-    &= \frac{1}{2\pi}\int_0^\pi [\cos (x-x)-\cos(x+x)]\diff x = \frac{1}{2\pi}\int_0^\pi [1-\cos(2x)]\diff x\\
-    &= \frac{1}{2\pi}\left[x-\frac{1}{2}\sin 2x \bigg\vert_0^\pi\right]= \frac{1}{2\pi}[\pi] = \frac{1}{2}
-     \end{split}
-    \intertext{Para $b_n$:}
-    \begin{split}
-    b_n &= \frac{1}{\pi} \int_0^\pi \sin x\sin nx\diff x = \frac{1}{2\pi}\int_0^\pi [\cos(x-nx)-\cos(x+nx)]\diff x\\
-    &= \frac{1}{2\pi}\int_0^\pi [\cos(1-n)x-\cos(1+n)x]\diff x = 0
-    \end{split}
-\intertext{Por lo tanto, \textit{la serie de Fourier} es: }
- \begin{split}
-f(x)
-&= \frac{1}{\pi}+\frac{1}{2}\sin x+\sum_{n=1}^{\infty}\frac{2}{\pi(1-4n^2)}\cos 2nx\\
-&= \frac{1}{\pi}+\frac{1}{2}\sin x+\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{\cos 2nx}{(1-4n^2)}\\
-&= \frac{1}{\pi}+\frac{1}{2}\sin x-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{\cos 2nx}{(4n^2-1)}
- \end{split}
-\end{align}
-Se puede consultar en: \href{https://www.desmos.com/calculator/nviq2wplpt}{https://www.desmos.com/calculator/nviq2wplpt}
 
-\begin{figure}[htbp]
-  \centering
-  \includesvg[scale=0.25]{Images/desmos-graph.svg}
-  \caption{Serie de Fourier}
-\end{figure}
-    \item Utilice el resultado del inciso anterior para deducir que
-$$
-\frac{\pi}{4}=\frac{1}{2}+\frac{1}{1 \cdot 3}-\frac{1}{3 \cdot 5}+\frac{1}{5 \cdot 7}-\frac{1}{7 \cdot 9}+\cdots
-$$
-\end{enumerate}
-\begin{solution}
-Para la demostración de la serie de $\frac{1}{1\cdot 3}-\frac{1}{3\cdot 5}+\frac{1}{5\cdot 7}-\frac{1}{7\cdot 9}$ se tomará como referencia la demostración de \cite{2556675} en el caso de la serie positiva. Entonces, se tiene que: $$\frac{1}{1\cdot 3}-\frac{1}{3\cdot 5}+\frac{1}{5\cdot 7}-\frac{1}{7\cdot 9}= \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{(2n-1)(2n+1)}$$
-Es decir que el problema pide deducir: 
-$$\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{(2n-1)(2n+1)}= \frac{\pi}{4}-\frac{1}{2}= \frac{\pi-2}{4}$$
-Es decir, expresado de otra forma: 
-$$\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{4n^2-1}= \frac{\pi-2}{4}$$
-\begin{align}
-    \intertext{Entonces, se tiene: }
-    f(x)&=\frac{1}{\pi}+\frac{1}{2}\sin x-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{\cos 2nx}{(4n^2-1)}\\
-    \sin(x)&= \frac{1}{\pi}+\frac{1}{2}\sin x-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{\cos 2nx}{(4n^2-1)}
-\intertext{Se propone utilizar $x=\frac{\pi}{2}$:}
- \sin(\frac{\pi}{2})&= \frac{1}{\pi}+\frac{1}{2}\sin \frac{\pi}{2}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{\cos 2n\frac{\pi}{2}}{(4n^2-1)}\\
- 1&= \frac{1}{\pi}+\frac{1}{2}-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{(-1)^n}{4n^2-1}\\
- 1-\frac{1}{\pi}-\frac{1}{2} &= \frac{2}{\pi}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{4n^2-1}\\
- \frac{\pi(2\pi-2-\pi)}{4\pi}&= \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{4n^2-1}\\
- \frac{(2\pi-2-\pi)}{4}&= \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{4n^2-1}\\
- \frac{\pi-2}{4}&= \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{4n^2-1}
-\end{align}
-\end{solution}
-\section{Problema 3}
-3. Resuelva la ecuación de Laplace
-$$
-\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}=0
-$$
-para una placa rectangular y sujeta a las condiciones
-$$
-\begin{array}{c}
-\frac{\partial u}{\partial x}(0, y)=\frac{\partial u}{\partial x}(a, y)=0 \\
-u(x, 0)=x, \quad u(x, b)=0
-\end{array}
-$$
-\section{Problema 4}
+\input{Problemas/1}
+\input{Problemas/2}
+\input{Problemas/3}
+\input{Problemas/4}
 
- Resuelva el problema con valores en la frontera:
-$$
-\frac{\partial^{2} u}{\partial t^{2}}+a^{2} \frac{\partial^{4} u}{\partial x^{4}}=0
-$$
-Sujeta a las condiciones:
-$$
-\begin{array}{c}
-u(0, t)=u(l, t)=0, t>0 \\
-\frac{\partial^{2} u}{\partial x^{2}}(0, t)=\frac{\partial^{2} u}{\partial x^{2}}(l, t)=0, t>0 \\
-u(x, 0)=f(x), \quad 0 \leq x \leq l \\
-\frac{\partial u}{\partial t}(x, 0)=g(x), \quad 0 \leq x \leq l
-\end{array}
-$$
+
 %---------------------------
 \bibliographystyle{apalike}
 \bibliography{sample.bib}

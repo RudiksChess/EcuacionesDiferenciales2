@@ -1,0 +1,155 @@
+
+\section{Problema 3}
+3. Resuelva la ecuación de Laplace
+$$
+\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}=0
+$$
+para una placa rectangular y sujeta a las condiciones
+$$
+\begin{array}{c}
+\frac{\partial u}{\partial x}(0, y)=\frac{\partial u}{\partial x}(a, y)=0 \\
+u(x, 0)=x, \quad u(x, b)=0
+\end{array}
+$$
+
+\begin{solution}
+Comenzamos planteando una sustitución de variables:
+$$u(x,y)=X(x)\cdot Y(y) = X\cdot Y$$
+Es decir que el problema se puede plantear como: 
+$$X''Y+Y''X=0\implies X''Y=-Y''X\implies \fbox{$\frac{X''}{X}=-\frac{Y''}{Y}=-\lambda$}$$
+del cual se generan 2 EDOs. 
+
+\linea 
+
+Para la primera EDO: 
+$$\frac{X''}{X}=-\lambda\implies X''+\lambda X=0$$
+
+Con las condiciones de frontera: 
+$$\frac{\partial u}{\partial x}\Big |_{x=0}=0, \qquad \frac{\partial u}{\partial x}\Big |_{x=a}=0$$
+
+\linita
+
+La solución para $\lambda=0$ es: 
+$$X(x)= A+Bx$$
+$$X'(x)= B$$
+
+Aplicando las condiciones de frontera: 
+$$X'(0)=B=0$$
+$$X'(a)=B=0$$
+Por lo tanto: 
+$$\fbox{$X_0(x)=1$}$$
+
+
+\linita 
+
+La solución para $\lambda\neq0$ es: 
+$$X(x)=A\cos\sqrt{\lambda}x+B\sin\sqrt{\lambda}x$$
+Derivando: 
+$$X'(x)=-A\sqrt{\lambda}\sin\sqrt{\lambda}x+B\sqrt{\lambda}\cos\sqrt{\lambda}x$$
+
+Aplicando las condiciones de frontera: 
+
+$$X'(0)= B=0$$
+$$X'(a)= -A\sqrt{\lambda}\sin\sqrt{\lambda}a=0$$
+
+Ahora es necesario analizar la relación de $\sqrt{\lambda}a$: 
+
+$$\sqrt{\lambda}a=\pi n \implies \sqrt{\lambda}=\frac{\pi n}{a}, \qquad n=1,2,3,...$$
+
+Por lo tanto, la solución de la EDO es: 
+$$\fbox{$X_n(x)=\cos\frac{\pi n}{a}x,\qquad n=1,2,3,...$}$$
+
+\linea 
+
+La segunda EDO: 
+$$-\frac{Y''}{Y}=-\lambda\implies Y''-\lambda Y=0$$
+
+Con la condición de frontera: 
+
+$$u(x,b)=0$$
+
+\linita 
+
+La solución para $\lambda=0$: 
+
+$$Y(y)=C+Dy$$
+
+Aplicando las condiciones de frontera: 
+$$Y(b)= C+Db=0\implies C=-Db$$
+
+Finalmente: 
+$$Y(y)=-Db+Dy$$
+$$\fbox{$Y_0(y)=(y-b)$}$$
+
+\linita
+
+La solución para $\lambda\neq0$ es:
+$$Y(y)= C\cosh \sqrt{\lambda} y +D\sinh \sqrt{\lambda}y$$
+
+Aplicando la condición inicial: 
+
+$$Y(b)=C\cosh\sqrt{\lambda}b+D\sinh\sqrt{\lambda}b=0$$
+
+Despejando para $C$:
+$$C=-\frac{D\sinh\sqrt{\lambda}b}{\cosh\sqrt{\lambda}b}=-D\tanh\sqrt{\lambda}b $$
+Es decir que sustituyendo la $C$ en la solución inicial: 
+$$Y(y)= -D\tanh\sqrt{\lambda}b\cdot \cosh \sqrt{\lambda} y +D\sinh \sqrt{\lambda}y=D\left[\sinh \sqrt{\lambda}y-\tanh\sqrt{\lambda}b\cdot \cosh \sqrt{\lambda} y\right]$$
+Ahora bien, sustituyendo $\sqrt{\lambda}$, la solución es: 
+$$\fbox{$Y_n(y)=\sinh \frac{\pi n}{a}y-\tanh\frac{\pi n}{a}b\cdot \cosh \frac{\pi n}{a} y,\qquad n=1,2,3,...$}$$
+
+\linea 
+
+La solución, entonces: 
+
+$$\fbox{$u(x,y)=\frac{A_0}{2}(y-b)+\sum_{n=1}^\infty A_n\cos \frac{\pi n}{a}x\cdot \left[\sinh \frac{\pi n}{a}y-\tanh\frac{\pi n}{a}b\cdot \cosh \frac{\pi n}{a} y \right]$}$$
+
+Sujeta a la condición inicial: 
+$$u(x,0)=x$$
+
+Entonces: 
+
+$$x=-\frac{A_0b}{2}+\sum_{n=1}^\infty A_n\cos \frac{\pi n}{a}x\cdot \left[-\tanh\frac{\pi n}{a}b\right]$$
+Haciendo dos sustitución para simplificar: 
+$$x=\frac{C_0}{2}+\sum_{n=1}^\infty C_n\cos \frac{\pi n}{a}x$$
+
+\linita 
+
+Identificamos que se trata de una serie de cosenos. Comenzamos calculando $C_0$: 
+
+$$C_0=\frac{2}{a}\int_0^a x \ dx  = \frac{1}{a} x^2\Big|_0^a= \frac{1}{a}(a^2)=a$$
+Para $C_n$: 
+
+$$C_n= \frac{2}{a}\int_0^a x\cos\frac{\pi n}{a}x \ dx $$
+
+En donde: 
+$$
+\begin{array}{ccc}
+    + & x & \cos\frac{\pi n}{a}x \\
+    - & 1 & \frac{a}{\pi n}\sin\frac{\pi n}{a}x\\
+    + & 0 & \frac{a^2}{\pi^2 n^2} \cos\frac{\pi n}{a}x
+\end{array}$$
+
+Por lo cual: 
+\begin{align*}
+    C_n &= \frac{2}{a}\left[\frac{xa}{\pi n}\sin\frac{\pi n}{a}x+\frac{a^2}{\pi^2 n^2} \cos\frac{\pi n}{a}x \right]_0^a\\
+    &= \frac{2}{a}\left[\left(\frac{a^2}{\pi n}\sin\pi n+\frac{a^2}{\pi^2 n^2} \cos\pi n\right)-\left(\frac{a^2}{\pi^2 n^2}\right) \right]\\
+    &= \frac{2}{a}\left[\frac{a^2}{\pi^2 n^2} \cos\pi n-\frac{a^2}{\pi^2 n^2} \right]\\
+    &= \frac{2a}{\pi^2 n^2}\left[(-1)^n-1 \right]
+\end{align*}
+
+\linita 
+
+Volviendo a las expresiones originales de las primeras 2 substituciones: 
+$$C_0 = -A_0b \implies a= -A_0 b \implies A_0=-\frac{a}{b}\implies $$
+ 
+Por otra parte: 
+
+$$C_n= -A_n\tanh \frac{\pi n}{a}b\implies \frac{2a}{\pi^2 n^2}\left[(-1)^n-1 \right] =-A_n\tanh \frac{\pi n}{a}b $$
+$$\implies A_n= \frac{\frac{2a}{\pi^2 n^2}\left[(-1)^n-1 \right]}{-\tanh \frac{\pi n}{a}b}=\frac{2a[1-(-1)^n]}{\pi^2 n^2 \tanh \frac{\pi n}{a}b}= \frac{2a[1+(-1)^{n+1}]}{\pi^2 n^2 \tanh \frac{\pi n}{a}b}$$
+
+\linea
+
+Por lo tanto, la solución final: 
+$$\fbox{$u(x,y)=-\frac{a}{2b}(y-b)+\sum_{n=1}^\infty \frac{2a[1+(-1)^{n+1}]}{\pi^2 n^2 \tanh \frac{\pi n}{a}b}\cos \frac{\pi n}{a}x\cdot \left[\sinh \frac{\pi n}{a}y-\tanh\frac{\pi n}{a}b\cdot \cosh \frac{\pi n}{a} y \right]$}$$
+
+\end{solution}

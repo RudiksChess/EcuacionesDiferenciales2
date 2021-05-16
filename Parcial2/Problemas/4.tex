@@ -1,0 +1,166 @@
+\section{Problema 4}
+
+ Resuelva el problema con valores en la frontera:
+$$
+\frac{\partial^{2} u}{\partial t^{2}}+a^{2} \frac{\partial^{4} u}{\partial x^{4}}=0
+$$
+Sujeta a las condiciones:
+$$
+\begin{array}{c}
+u(0, t)=u(l, t)=0, t>0 \\
+\frac{\partial^{2} u}{\partial x^{2}}(0, t)=\frac{\partial^{2} u}{\partial x^{2}}(l, t)=0, t>0 \\
+u(x, 0)=f(x), \quad 0 \leq x \leq l \\
+\frac{\partial u}{\partial t}(x, 0)=g(x), \quad 0 \leq x \leq l
+\end{array}
+$$
+
+\begin{solution}
+Considerando: 
+$$u(x,t)= X(x)\cdot T(t)$$
+Entonces, substituyendo en la ecuación original:
+$$XT''+a^2X^{(4)}T=0\implies a^2X^{(4)}T=-XT''\implies \frac{X^{(4)}}{-X}=\frac{T''}{a^2T}=-\lambda^2$$
+
+\linea
+
+La primera EDO, se define como: 
+$$X^{(4)}-\lambda^2 X=0.$$
+Con las condiciones,
+$$u(0,t)=u(l,t)=0$$
+$$\frac{\partial^{2} u}{\partial x^{2}}(0, t)=\frac{\partial^{2} u}{\partial x^{2}}(l, t)=0$$
+
+\linita 
+
+\fbox{Caso $\lambda^2>0$}\\ 
+Proponemos una substitución, 
+
+$$m^4-\lambda^2=0\implies (m^2-\lambda)(m^2+\lambda)=0$$
+$$m=\pm \sqrt{\lambda} \qquad m=\pm i\lambda$$
+
+Por lo que la solución general de la EDO es,
+$$X(x)=Ae^{\sqrt{\lambda}x}+Be^{-\sqrt{\lambda}x}+C\cos(\sqrt{\lambda}x)+D\sin(\sqrt{\lambda}x)$$
+
+\lineata
+
+Con las condiciones, 
+$$u(0,t)=u(l,t)=0.$$
+Entonces,
+
+\setcounter{equation}{0}
+\begin{gather}
+    X(0)=A+B+C=0\\
+    X(l)=Ae^{\sqrt{\lambda}l}+Be^{-\sqrt{\lambda}l}+C\cos(\sqrt{\lambda}l)+D\sin(\sqrt{\lambda}l)=0
+\end{gather}
+
+
+\lineata
+
+
+Su primera derivada, 
+$$X'(x)=\sqrt{\lambda}Ae^{\sqrt{\lambda}x}-\sqrt{\lambda}Be^{-\sqrt{\lambda}x}-\sqrt{\lambda}C\sin(\sqrt{\lambda}x)+\sqrt{\lambda}D\cos(\sqrt{\lambda}x)$$
+
+Su segunda derivada, 
+$$X''(x)=\lambda Ae^{\sqrt{\lambda}x}+\lambda Be^{-\sqrt{\lambda}x}-\lambda C\cos(\sqrt{\lambda}x)-\lambda D\sin(\sqrt{\lambda}x)$$
+
+\lineata 
+
+Con las condiciones, 
+$$\frac{\partial^{2} u}{\partial x^{2}}(0, t)=\frac{\partial^{2} u}{\partial x^{2}}(l, t)=0$$
+Entonces,
+\begin{gather}
+    X''(0)=\lambda A+\lambda B-\lambda C=\lambda(A+B-C)=0\implies A+B-C=0
+\end{gather}
+$$X''(l)= \lambda Ae^{\sqrt{\lambda}l}+\lambda Be^{-\sqrt{\lambda}l}-\lambda C\cos(\sqrt{\lambda}l)-\lambda D\sin(\sqrt{\lambda}l)=0$$
+$$\implies \lambda (Ae^{\sqrt{\lambda}l} +Be^{-\sqrt{\lambda}l}- C\cos(\sqrt{\lambda}l)- D\sin(\sqrt{\lambda}l))=0$$
+
+\begin{gather}
+    \implies X''(l)=Ae^{\sqrt{\lambda}l} +Be^{-\sqrt{\lambda}l}- C\cos(\sqrt{\lambda}l)- D\sin(\sqrt{\lambda}l)=0
+\end{gather}
+
+\lineata 
+
+Entonces, por (1) y (3) tenemos que, 
+$$\begin{cases}A+B+C=0\\ A+B-C=0\end{cases}\implies -C-C=0\implies -2C=0\implies C=0.$$
+Por lo que, sabemos que, 
+$$A+B=0 \implies B=-A.$$
+
+Por otra parte, por (2), y (4) sabemos:
+$$\begin{cases}Ae^{\sqrt{\lambda}l}+Be^{-\sqrt{\lambda}l}+C\cos(\sqrt{\lambda}l)+D\sin(\sqrt{\lambda}l)=0\\ 
+Ae^{\sqrt{\lambda}l} +Be^{-\sqrt{\lambda}l}- C\cos(\sqrt{\lambda}l)- D\sin(\sqrt{\lambda}l)=0 \end{cases} $$
+Ahora bien, considerando que $C=0$ y $B-A$, entonces: 
+
+$$\begin{cases}Ae^{\sqrt{\lambda}l}+-Ae^{-\sqrt{\lambda}l}+D\sin(\sqrt{\lambda}l)=0\\ 
+Ae^{\sqrt{\lambda}l} -Ae^{-\sqrt{\lambda}l}- D\sin(\sqrt{\lambda}l)=0 \end{cases}\text{ Si aplicamos una resta, entonces:} $$
+$$2D\sin(\sqrt{\lambda}l)=0\implies \sin(\sqrt{\lambda}l)=0, \quad \text{en donde: $\sqrt{\lambda} l=\pi n\implies \sqrt{\lambda}=\frac{\pi n}{l}$}$$
+
+\lineata 
+
+Por lo tanto, 
+$$X(x)=Ae^{\sqrt{\lambda}x}+Be^{-\sqrt{\lambda}x}+C\cos(\sqrt{\lambda}x)+D\sin(\sqrt{\lambda}x)$$
+Como se mostró previamente, $C=0$ y $B=-A$, entonces:
+$$X(x)=Ae^{\sqrt{\lambda}x}-Ae^{-\sqrt{\lambda}x}+D\sin(\sqrt{\lambda}x)= A\left(e^{\sqrt{\lambda}x}-e^{-\sqrt{\lambda}x}\right)+D\sin(\sqrt{\lambda}x)$$
+$$\implies X(x)=2A\sinh(\sqrt{\lambda x})+D\sin(\sqrt{\lambda}x)$$
+Considerando que $\sqrt{\lambda}= \pi n/l$, entonces: 
+
+$$X_n(x)=A_n \sinh\left(\frac{\pi n}{l} x\right)+B_n\sin\left(\frac{\pi n}{l}x\right), \quad n=1,2,3,...$$
+
+\linita 
+
+\fbox{Caso $\lambda^2=0$}\\
+Es decir que tenemos, 
+$$X^{(4)}=0.$$
+Con la solución general, 
+$$X(x)=Ax^3+Bx^2+Cx+D$$
+
+\lineata
+
+Con las condiciones, 
+$$u(0,t)=u(l,t)=0.$$
+Entonces,
+
+$$X(0)=D=0$$
+$$X(l)=Al^3+Bl^2+Cl+D=Al^3+Bl^2+Cl=0$$
+
+\lineata 
+
+Su primera derivada, 
+$$X'(x)=3Ax^2+2Bx+C$$
+Su segunda derivada,
+$$X''(x)=6Ax+2B$$
+
+\lineata
+
+Con las condiciones, 
+$$\frac{\partial^{2} u}{\partial x^{2}}(0, t)=\frac{\partial^{2} u}{\partial x^{2}}(l, t)=0$$
+Entonces,
+$$X''(0)=B=0$$
+$$X''(l)=6Al+2B=6Al=0\implies A=0.$$
+
+Por lo tanto, $$X_0(x)=0.$$ 
+
+
+\linea 
+
+La segunda EDO, se define como: 
+$$T''+(a\lambda)^2T=0.$$
+
+Su solución general es, 
+$$T(t)=A\cos(a\lambda t)+B\sin(a\lambda t)$$
+
+En donde, $\sqrt{\lambda}=\pi n / l\implies \lambda=\left(\pi n / l\right)^2$, entonces:
+
+$$T_n(t)=C_n\cos\left(a\frac{\pi n}{l} t\right)+D_n\sin\left(a\frac{\pi n}{l} t\right), \quad n=1,2,...$$
+
+\linea 
+
+Ahora bien, entonces, 
+
+$$u(x,t)= X_nT_n=\left[A_n \sinh\left(\frac{\pi n}{l} x\right)+B_n\sin\left(\frac{\pi n}{l}x\right)\right]\cdot\left[C_n\cos\left(a\frac{\pi n}{l} t\right)+D_n\sin\left(a\frac{\pi n}{l} t\right)\right]$$
+Implica: 
+\begin{align*}
+    u(x,t)&=\sum_{n=1}^\infty X_n\cdot T_n\\
+          &= \sum_{n=1}^\infty\left[A_n \sinh\left(\frac{\pi n}{l} x\right)+B_n\sin\left(\frac{\pi n}{l}x\right)\right]\cdot\left[C_n\cos\left(a\frac{\pi n}{l} t\right)+D_n\sin\left(a\frac{\pi n}{l} t\right)\right]
+\end{align*}
+
+
+
+\end{solution}
