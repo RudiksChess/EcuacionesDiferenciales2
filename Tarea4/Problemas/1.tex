@@ -5,12 +5,32 @@ Con las condiciones: $$ t>0,\qquad x>0,\qquad u(x, 0)=10 e^{-x}-6 e^{-4 x}$$
 Aplicando la transformada de Laplace (en términos de $f(t)$), tenemos: 
 \begin{align*}
 	\Laplace{\frac{\partial u}{\partial t}} &= \Laplace{\frac{\partial u}{\partial x}}-2\Laplace{u}\\
-	s\widecheck{u}(x,s)  -u(x,0)&= \widehat{u}'(x,s)-2\widehat{u}(x,s)\\
-	s\widecheck{u}(x,s)  -(10e^{-x}-6e^{-4x})&= \widehat{u}'(x,s)-2\widehat{u}(x,s)
+	s\widecheck{u}(x,s)  -u(x,0)&= \widecheck{u}'(x,s)-2\widecheck{u}(x,s)\\
+	s\widecheck{u}(x,s)  -(10e^{-x}-6e^{-4x})&= \widehat{u}'(x,s)-2\widecheck{u}(x,s)
 	\intertext{Usando una notación más cómoda, tenemos:}
-	s\widecheck{u}  -(10e^{-x}-6e^{-4x})&= \widehat{u}'-2\widehat{u}\\
+	s\widecheck{u}  -(10e^{-x}-6e^{-4x})&= \widecheck{u}'-2\widecheck{u}\\
 	 -(10e^{-x}-6e^{-4x})&= \widehat{u}'-2\widehat{u}-s\widecheck{u}
 	 \intertext{Que implica:}
 	 \widehat{u}'-(2+s)\widehat{u} &= 6e^{-4x}-10e^{-x}
 \end{align*}
+
+\linea 
+
+Identificamos que se trata de una ecuación de primer order, con $P(x)=-(2+s)$. Entonces, 
+$$\mu =e^{\int P(x) dx}=e^{-\int (2+s) dx}=e^{- (2+s)x }$$
+Por lo cual, 
+\begin{align*}
+	\frac{d}{dx}\left[e^{- (2+s)x }\widecheck{u}\right]&=  \left(6e^{-4x}-10e^{-x}\right)e^{- (2+s)x }\\
+	\int d\left[e^{- (2+s)x }\widecheck{u}\right]&= \int \left(6e^{-4x}-10e^{-x}\right)e^{- (2+s)x }dx\\
+	e^{- (2+s)x }\widecheck{u} &=  \int \left(6e^{-4x- (2+s)x}-10e^{-x- (2+s)x}\right)dx\\
+	e^{- (2+s)x }\widecheck{u} &=  \int \left(6e^{-x(6+s)}-10e^{-x(3+s)}\right)dx\\
+	e^{- (2+s)x }\widecheck{u} &=-\frac{6e^{-x(6+s)}}{6+s}+\frac{10e^{-x(3+s)}}{3+s}\\
+	\widecheck{u} &= -\frac{6e^{-x(6+s)}	e^{(2+s)x }}{6+s}+\frac{10e^{-x(3+s)}	e^{ (2+s)x }}{3+s}\\
+	\widecheck{u} &= -\frac{6e^{-x(6+s)+(2+s)x }}{6+s}+\frac{10e^{-x(3+s)+(2+s)x}}{3+s}\\
+	\widecheck{u} &= -\frac{6e^{-4x }}{6+s}+\frac{10e^{-x}}{3+s}
+\end{align*}
+La solución es: 
+$$u(x,t)=\iLaplace{u(x,s)}(t)=\iLaplace{\frac{10e^{-x}}{3+s}-\frac{6e^{-4x }}{6+s}}=\iLaplace{\frac{10e^{-x}}{3+s}}-\iLaplace{\frac{6e^{-4x }}{6+s}}=$$
+$$=10e^{-x}\iLaplace{\frac{1}{s-(-3)}}-6e^{-4x }\iLaplace{\frac{1}{s-(-6)}}=10e^{-x}e^{-3t}-6e^{-4x }e^{-6t}=$$
+$$= 10e^{-x-3t}-6e^{-4x-6t }= 10e^{-(x+3t)}-6e^{-2(2x+3t) }$$
 \end{solution}
