@@ -25,12 +25,17 @@
 \usepackage{tcolorbox}
 \usepackage{tikz}
 \usepackage{pdfpages}
+\usepackage{mathabx}
 \usetikzlibrary{patterns}
 \newcommand{\linea}{\noindent\rule{\textwidth}{1pt}}
 \AtBeginEnvironment{align}{\setcounter{equation}{0}}
 \newenvironment{solution}
   {\renewcommand\qedsymbol{$\square$}\begin{proof}[\textcolor{blue}{Solución}]}
   {\end{proof}}
+\newcommand{\Laplace}[1]{\mathcal{L}\left\{#1\right\}}
+\newcommand{\iLaplace}[1]{\mathcal{L}^{-1}\left[#1\right]}
+
+
 
 \pagestyle{fancy}
 

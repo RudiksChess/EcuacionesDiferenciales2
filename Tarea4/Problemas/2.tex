@@ -1,4 +1,35 @@
 
 \section{Problema 2.} Encuentre la solución acotada de $$\frac{\partial u}{\partial t}=\frac{\partial^{2} u}{\partial x^{2}}$$
 
-Con las condiciones: $ x>0, t>0$, y tal que $u(0, t)=1$,$u(x, 0)=0$
+Con las condiciones: $ x>0,  t>0$, y tal que $$u(0, t)=1, \qquad u(x, 0)=0$$
+
+\begin{tcolorbox}[colback=gray!15,colframe=black!1!black,title=Nota 1]
+	Debido a que no hay ninguna cota en $x$, se impondrá una nueva condición (basado en los principios físicos que gobiernan la ecuación de calor): 
+	$$\lim_{x\to\infty}u(x,t)=0, \quad t>0.$$
+\end{tcolorbox}
+
+\begin{solution}
+	Aplicando la transformada de Laplace (en términos de $f(t)$), tenemos: 
+	\begin{align*}
+		\frac{\partial u}{\partial t}&=\frac{\partial^{2} u}{\partial x^{2}}\\
+		\Laplace{\frac{\partial u}{\partial t}}&=\Laplace{\frac{\partial^{2} u}{\partial x^{2}}}\\
+		s\widecheck{u}(x,s)-u(x,0) &= \widecheck{u}''(x,s)
+		\intertext{Aplicando $u(x, 0)=0\implies \widecheck{u}(x, 0)=0$:}
+		s\widecheck{u}(x,s)&= \widecheck{u}''(x,s)
+		\intertext{Implica:}
+		\widecheck{u}''(x,s)-s\widecheck{u}(x,s) &= 0
+		\intertext{Con una notación más cómoda:}
+		\widecheck{u}''-s\widecheck{u} &= 0
+		\intertext{Resolviendo la EDO:}
+		\widecheck{u}(x,s) &= Ae^{(-\sqrt{s}x)}+Be^{(\sqrt{s}x)}	
+		\intertext{Por la \textbf{Nota 1}, sabemos $\lim_{x\to\infty}u(x,t)=0\implies \lim_{x\to\infty}\widecheck{u}(x,s)=0$. Por lo tanto, $B$ debe ser 0:}
+		\widecheck{u}(x,s) &= Ae^{(-\sqrt{s}x)}
+		\intertext{Aplicando la condición $u(0, t)=1\implies \widecheck{u}(0,s)=1/s$:}	
+		\widecheck{u}(0,s) &= A=\frac{1}{s}
+		\intertext{Entonces:}
+		\widecheck{u}(x,s) &= \frac{1}{s}e^{(-\sqrt{s}x)}
+		\intertext{La solución es:}
+		u(x,t)&=  \iLaplace{u(x,s)}(t)\\ 
+		&=\iLaplace{\frac{1}{s}e^{(-\sqrt{s}x)}}
+\end{align*}
+\end{solution}

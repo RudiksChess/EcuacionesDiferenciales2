@@ -1,4 +1,21 @@
-\section{Problema 4.} Resuelva: $$\frac{\partial^{2} y}{\partial t^{2}}=c^{2} \frac{\partial^{2} u}{\partial x^{2}}+\frac{F_{o}}{\rho}$$
+\section{Problema 4.} Resuelva:
+$$\frac{\partial^{2} y}{\partial t^{2}}=c^{2} \frac{\partial^{2} y}{\partial x^{2}}+\frac{F_{o}}{\rho}$$
 
-Con las condiciones: $0<x<L, t>0$, sujeta a $y(0, t)=y(L, t)=y(x, 0)=$
-$\frac{\partial y}{\partial t}(x, 0)=0$
+Con las condiciones: $0<x<L, t>0$, sujeta a 
+$$y(0, t)=y(L, t)=y(x, 0)=\frac{\partial y}{\partial t}(x, 0)=0$$
+
+\begin{solution}
+	Aplicando la transformada de Laplace (en términos de $f(t)$), tenemos: 
+	\begin{align*}
+		\Laplace{\frac{\partial^{2} y}{\partial t^{2}}}&=c^{2}\Laplace{ \frac{\partial^{2} y}{\partial x^{2}}}+\frac{F_{o}}{\rho}\Laplace{1}\\
+		s^2\widecheck{y}(x,s)-sy(x,0)-y'(x,0)&= c^2\widecheck{y}''(x,s)+\frac{F_o}{\rho}\cdot \frac{1}{s}\\
+		s^2\widecheck{y}(x,s)&= c^2\widecheck{y}''(x,s)+\frac{F_o}{\rho}\cdot\frac{1}{s}
+		\intertext{Implica:}
+		c^2\widecheck{y}''(x,s)-s^2\widecheck{y}(x,s) &= -\frac{F_o}{\rho }\cdot \frac{1}{s}\\
+		\widecheck{y}''(x,s)-\frac{1}{c^2}\widecheck{y}(x,s) &= -\frac{F_o}{c^2\rho }\cdot \frac{1}{s}
+		\intertext{Substituimos $k_1=1/c_2$ $k_2=F_o/c^2\rho$:}
+		\widecheck{y}''(x,s)-k_1\cdot s^2\widecheck{y}(x,s) &= -k_2\cdot \frac{1}{s}
+		\intertext{Usamos una notación más cómoda:}
+		\widecheck{y}''-k_1\cdot s^2\widecheck{y} &= -k_2\cdot \frac{1}{s}
+	\end{align*}
+\end{solution}

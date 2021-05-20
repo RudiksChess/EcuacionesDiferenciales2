@@ -1,3 +1,17 @@
-\section{Problema 3.} Resuelva: $$\frac{\partial u}{\partial t}=4 \frac{\partial^{2} u}{\partial x^{2}}, t>0$$
-Con las condiciones: $u(0, t)=0, u(3, t)=0, u(x, 0)=10 \sen 2 \pi x-$
-$6 \sen 4 \pi x$
+\section{Problema 3.} 
+Resuelva: $$\frac{\partial u}{\partial t}=4 \frac{\partial^{2} u}{\partial x^{2}},\quad t>0$$
+Con las condiciones:
+ $$u(0, t)=0, \quad u(3, t)=0,\quad u(x, 0)=10 \sen 2 \pi x-6 \sen 4 \pi x$$
+\begin{solution}
+	Aplicando la transformada de Laplace (en términos de $f(t)$), tenemos: 
+	\begin{align*}
+	\Laplace{\frac{\partial u}{\partial t}}&=4 \Laplace{\frac{\partial^{2} u}{\partial x^{2}}}\\
+	s\widecheck{u}(x,s)-u(x,0) &= 4\widecheck{u}''(x,s)
+	\intertext{Aplicando una de las condiciones iniciales:}
+	s\widecheck{u}(x,s)-\left(10 \sen 2 \pi x-6 \sen 4 \pi x\right) &= 4\widecheck{u}''(x,s)\\
+	4\widecheck{u}''(x,s) -s\widecheck{u}(x,s)&= 6 \sen 4 \pi -10 \sen 2 \pi x\\
+	\widecheck{u}''(x,s) -\frac{s}{4}\widecheck{u}(x,s)&= \frac{3}{2} \sen 4 \pi -\frac{5}{2} \sen 2 \pi x
+	\intertext{Usando una notación más cómoda:}
+		\widecheck{u}''-\frac{s}{4}\widecheck{u}&= \frac{3}{2} \sen 4 \pi -\frac{5}{2} \sen 2 \pi x
+	\end{align*}
+\end{solution}
