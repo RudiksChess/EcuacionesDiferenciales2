@@ -1,3 +1,4 @@
+% !TeX spellcheck = <none>
 \section{Problema 3.} 
 Resuelva: $$\frac{\partial u}{\partial t}=4 \frac{\partial^{2} u}{\partial x^{2}},\quad t>0$$
 Con las condiciones:
@@ -10,8 +11,100 @@ Con las condiciones:
 	\intertext{Aplicando una de las condiciones iniciales:}
 	s\widecheck{u}(x,s)-\left(10 \sen 2 \pi x-6 \sen 4 \pi x\right) &= 4\widecheck{u}''(x,s)\\
 	4\widecheck{u}''(x,s) -s\widecheck{u}(x,s)&= 6 \sen 4 \pi x -10 \sen 2 \pi x\\
-	\widecheck{u}''(x,s) -\frac{s}{4}\widecheck{u}(x,s)&= \frac{3}{2} \sen 4 \pi x -\frac{5}{2} \sen 2 \pi x
+	\widecheck{u}''(x,s) -\frac{s}{4}\widecheck{u}(x,s)&= \frac{3}{2} \sen 4 \pi x    -\frac{5}{2} \sen 2 \pi x
 	\intertext{Usando una notación más cómoda:}
-		\widecheck{u}''-\frac{s}{4}\widecheck{u}&= \frac{3}{2} \sen 4 \pi -\frac{5}{2} \sen 2 \pi x
+		\widecheck{u}''-\frac{s}{4}\widecheck{u}&= \frac{3}{2} \sen 4 \pi x -\frac{5}{2} \sen 2 \pi x
 	\end{align*}
+
+\linea 
+
+Se propone tratar el problema por el método del caso homógeneo y caso particular: 
+$$\widecheck{u}(x,s)=\widecheck{u}_H(x,s)+\widecheck{u}_P(x,s)$$
+
+\linea 
+
+Caso homógeneo :
+$$\widecheck{u}''-\frac{s}{4}\widecheck{u}= 0$$
+Haciendo una sustitución: 
+
+$$m^2-\frac{s}{4}=0\implies m=\pm\sqrt{\frac{s}{4}}$$
+
+La solución del caso homógeneo: 
+
+$$\widecheck{u}(x,s)= Ae^{+\sqrt{s/4}x}+Be^{-\sqrt{s/4}x}$$
+
+\linea 
+
+Caso particular: 
+
+$$	\widecheck{u}''-\frac{s}{4}\widecheck{u}= \frac{3}{2} \sen 4 \pi x -\frac{5}{2} \sen 2 \pi x$$
+
+Se propone tratar el problema por el método de coeficientes indeterminados, proponiendo: 
+$$\widecheck{u}_P(x,s)=A\sen4\pi x+B\cos4\pi x+C\sen2\pi x+D\cos2\pi x$$
+En donde, 
+$$\widecheck{u}'_P(x,s)=4\pi A\cos4\pi x-4\pi B\sen4\pi x+2\pi C \cos2\pi x-2\pi D\sen2\pi x$$
+$$\widecheck{u}''_P(x,s)=-16\pi^2 A \sen4\pi x-16\pi^2 B \cos4\pi x-4\pi^2 C \sen2\pi x-4\pi^2 D\cos2\pi x$$
+
+Haciendo una sustitución en la expresión propuesta: 
+
+\begin{align*}
+		\widecheck{u}''-\frac{s}{4}\widecheck{u} &= (-16\pi^2 A \sen4\pi x-16\pi^2 B \cos4\pi x-4\pi^2 C \sen2\pi x-4\pi^2 D\cos2\pi x)-\\
+		&-\frac{s}{4}(A\sen4\pi x+B\cos4\pi x+C\sen2\pi x+D\cos2\pi x)\\
+		&= -\left(16\pi +\frac{s}{4}\right)A\sin 4\pi x-\left(16\pi +\frac{s}{4}\right) B \cos4\pi x-\\
+		&-\left(4\pi +\frac{s}{4}\right)C \sen2\pi x-\left(4\pi +\frac{s}{4}\right)D \cos2\pi x
+\end{align*}
+Entonces, 
+\begin{align*}
+	\begin{split}
+		-\left(16\pi^2 +\frac{s}{4}\right)A\sen 4\pi x-\left(16\pi^2+\frac{s}{4}\right) B \cos4\pi x-\\-\left(4\pi^2+\frac{s}{4}\right)C \sen2\pi x-\left(4\pi^2 +\frac{s}{4}\right)D \cos2\pi x 
+	\end{split} &= \frac{3}{2} \sen 4 \pi x -\frac{5}{2} \sen 2 \pi x
+\intertext{Que es lo mismo que:}
+	\begin{split}
+		-\left(64\pi^2 +s\right)A\sen 4\pi x-\left(64\pi^2 +s\right) B \cos4\pi x-\\-\left(16\pi^2 +s\right)C \sen2\pi x-\left(16\pi^2 +s\right)D \cos2\pi x 
+	\end{split} &= \frac{3}{2} \sen 4 \pi x -\frac{5}{2} \sen 2 \pi x
+\end{align*}
+Nos damos cuenta que podemos asumir: $B=0=D$, entonces:
+
+$$-\left(64\pi^2 +s\right)A\sen 4\pi x-\left(16\pi^2+s\right)C \sen2\pi x=\frac{3}{2} \sen 4 \pi x -\frac{5}{2} \sen 2 \pi$$
+
+Es decir,
+
+$$-\left(64\pi^2+s\right)A=\frac{3}{2}\qquad \text{ y } \qquad-\left(16\pi^2 +s\right)C=-\frac{5}{2}  $$
+Entonces: 
+$$A=-\frac{3}{2(64\pi^2 +s)}=-\frac{6}{64\pi^2 +s} \qquad \text{ y } \qquad C=\frac{5}{2(16\pi^2 +s)}=\frac{10}{16\pi^2 +s}$$
+
+Por lo tanto, la solución del caso particular es: 
+
+$$\widecheck{u}_P(x,s)=-\left(\frac{6}{64\pi^2 +s}\right)\sen4\pi x+\left(\frac{10}{16\pi^2 +s}\right)\sen2\pi x$$
+
+\linea 
+
+La solución general: 
+\begin{align*}
+	\widecheck{u}(x,s)&=\widecheck{u}_H(x,s)+\widecheck{u}_P(x,s)\\
+									      &=  Ae^{+\sqrt{s/4}x}+Be^{-\sqrt{s/4}x} +\left(\frac{10}{16\pi^2 +s}\right)\sen2\pi x-\left(\frac{6}{64\pi^2 +s}\right)\sen4\pi x
+\end{align*}
+Considerando las condiciones, $\widecheck{u}(0,s)=0$ y $\widecheck{u}(3,s)=0$, tenemos: 
+$$\widecheck{u}(0,s)= A+B =0\implies B=-A$$
+
+Es decir: 
+
+$$\widecheck{u}(x,s)=C\cosh{\sqrt{\frac{s}{4}}x}+\left(\frac{10}{16\pi^2 +s}\right)\sen2\pi x-\left(\frac{6}{64\pi^2 +s}\right)\sen4\pi x$$
+
+Aplicando la última condición: 
+$$\widecheck{u}(3,s)=C\cosh{\sqrt{\frac{s}{4}}\cdot3}=0\implies C=0$$
+
+Por lo tanto, la solución general final es: 
+
+$$\widecheck{u}(x,s)=\left(\frac{10}{16\pi^2 +s}\right)\sen2\pi x-\left(\frac{6}{64\pi^2 +s}\right)\sen4\pi x$$
+
+Aplicando la transfromada inversa de Laplace:
+
+$$u(x,t)=\iLaplace{u(x,s)}(t)=\iLaplace{\left(\frac{10}{16\pi^2 +s}\right)\sen2\pi x-\left(\frac{6}{64\pi^2 +s}\right)\sen4\pi x}=$$
+$$=10\iLaplace{\left(\frac{1}{s-(-16\pi^2) }\right)}\sen2\pi x-6\iLaplace{\left(\frac{1}{s-(-64\pi^2) }\right)}\sen4\pi x=$$
+$$=10e^{-16\pi^2t}\sen2\pi x-6e^{-64\pi^2t}\sen4\pi x $$
+
+
+
+
 \end{solution}
