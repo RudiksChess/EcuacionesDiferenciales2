@@ -12,10 +12,74 @@ $$y(0, t)=y(L, t)=y(x, 0)=\frac{\partial y}{\partial t}(x, 0)=0$$
 		s^2\widecheck{y}(x,s)&= c^2\widecheck{y}''(x,s)+\frac{F_o}{\rho}\cdot\frac{1}{s}
 		\intertext{Implica:}
 		c^2\widecheck{y}''(x,s)-s^2\widecheck{y}(x,s) &= -\frac{F_o}{\rho }\cdot \frac{1}{s}\\
-		\widecheck{y}''(x,s)-\frac{1}{c^2}s^2\widecheck{y}(x,s) &= -\frac{F_o}{c^2\rho }\cdot \frac{1}{s}
-		\intertext{Substituimos $k_1=1/c_2$ $k_2=F_o/c^2\rho$:}
-		\widecheck{y}''(x,s)-k_1\cdot s^2\widecheck{y}(x,s) &= -k_2\cdot \frac{1}{s}
+		\widecheck{y}''(x,s)-\frac{s^2}{c^2}\widecheck{y}(x,s) &= -\frac{F_o}{c^2\rho s}
+		\intertext{Substituimos $k_1=s^2/c_2$ y $k_2=-F_o/c^2\rho s$:}
+		\widecheck{y}''(x,s)-k_1\widecheck{y}(x,s) &= k_2
 		\intertext{Usamos una notación más cómoda:}
-		\widecheck{y}''-k_1\cdot s^2\widecheck{y} &= -k_2\cdot \frac{1}{s}
+		\widecheck{y}''-k_1\widecheck{y} &= k_2
 	\end{align*}
+
+\linea 
+
+La forma de la solución es la siguiente: 
+$$\widecheck{y}(x,s)=\widecheck{y}_H(x,s)+\widecheck{y}_P(x,s)$$
+
+\linea 
+
+Caso homógeneo
+
+$$\widecheck{y}_H''-k_1\widecheck{y}_H = 0$$
+
+En donde su solución es: 
+
+$$\widecheck{y}_H(x,s)=Ae^{\sqrt{k_1}x}+Be^{-\sqrt{k_1}x}$$
+
+\linea 
+
+Caso particular 
+
+$$\widecheck{y}_P''-k_1\widecheck{y}_P = k_2$$
+
+Por el método de coeficientes intedeterminados, se propone $\widecheck{y}_P(x,s)=c$. Es decir:  
+
+\begin{align*}
+	\widecheck{y}_P''-k_1\widecheck{y}_P = \frac{\partial^2 x}{\partial x^2} c -k_1(c)  = 0 -k_1c.
+\end{align*}
+Por lo que, implica: 
+$$-k_1c=k_2\implies c=-\frac{k_2}{k_1}.$$
+Es decir, la solución del caso particular: 
+
+$$\widecheck{y}_P(x,s)=-\frac{k_2}{k_1}.$$
+
+\linea 
+
+La solución del caso general: 
+\begin{align*}
+	\widecheck{y}(x,s) &=\widecheck{y}_H(x,s)+\widecheck{y}_P(x,s)\\
+										  &= Ae^{\sqrt{k_1}x}+Be^{-\sqrt{k_1}x}-\frac{k_2}{k_1}.
+\end{align*}
+Aplicando las condiciones, $\widecheck{y}(0,s)=0=\widecheck{y}(L,s)$, entonces:
+$$\widecheck{y}(0,s) = A+B -\frac{k_2}{k_1}=0\implies B=\frac{k_2}{k_1}-A.$$
+
+Lo que quiere decir: 
+\begin{align*}
+	\widecheck{y}(x,s)&=Ae^{\sqrt{k_1}x}+\left(\frac{k_2}{k_1}-A\right)e^{-\sqrt{k_1}x}-\frac{k_2}{k_1}
+\end{align*}
+Ahora notamos que, mientras $e^{\sqrt{k_1}x}\to \infty$ y $x\to \infty$, entonces $A=0$. Por lo tanto: 
+
+\begin{align*}
+	\widecheck{y}(x,s)&=\left(\frac{k_2}{k_1}\right)e^{-\sqrt{k_1}x}-\frac{k_2}{k_1}
+	\intertext{Sustituyimos a sus variables originales $k_1$ y $k_2$: }
+										&= \left(\frac{-F_o/(c^2\rho s)}{s^2/c^2}\right)e^{-\sqrt{s^2/c^2}x}-\frac{-F_o/(c^2\rho s)}{s^2/c^2}\\
+										&= -\left(\frac{F_o}{\rho s^3}\right)e^{-\frac{s}{c}x}+\left(\frac{F_o}{\rho s^3}\right)
+\end{align*}
+
+Aplicando la trasnformada inversa de Laplace, se tiene: 
+
+$$y(x,t)=\iLaplace{\widecheck{y}(x,s)}=\iLaplace{\left(\frac{F_o}{\rho s^3}\right)-\left(\frac{F_o}{\rho s^3}\right)e^{-\frac{s}{c}x}}=$$
+$$=\frac{F_o}{\rho}\iLaplace{\frac{1}{s^3}}-\frac{F_o}{\rho}\iLaplace{\frac{1}{s^3}\cdot e^{-\frac{s}{c}x}}=$$
+$$=\frac{F_o}{\rho}\cdot \frac{t^2}{2}-\frac{F_o}{2\rho}\left(t-\frac{x}{c}\right)^2H\left(t-\frac{x}{c}\right)$$
+
+
+
 \end{solution}
