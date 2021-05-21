@@ -58,18 +58,46 @@ La solución del caso general:
 	\widecheck{y}(x,s) &=\widecheck{y}_H(x,s)+\widecheck{y}_P(x,s)\\
 										  &= Ae^{\sqrt{k_1}x}+Be^{-\sqrt{k_1}x}-\frac{k_2}{k_1}.
 \end{align*}
-Aplicando las condiciones, $\widecheck{y}(0,s)=0=\widecheck{y}(L,s)$, entonces:
+Aplicando las condiciones, $\widecheck{y}(0,s)=$, entonces:
 $$\widecheck{y}(0,s) = A+B -\frac{k_2}{k_1}=0\implies B=\frac{k_2}{k_1}-A.$$
 
 Lo que quiere decir: 
 \begin{align*}
-	\widecheck{y}(x,s)&=Ae^{\sqrt{k_1}x}+\left(\frac{k_2}{k_1}-A\right)e^{-\sqrt{k_1}x}-\frac{k_2}{k_1}
+	\widecheck{y}(x,s)&=Ae^{\sqrt{k_1}x}+\left(\frac{k_2}{k_1}-A\right)e^{-\sqrt{k_1}x}-\frac{k_2}{k_1}\\
+											&= A\left(e^{\sqrt{k_1}x}-e^{-\sqrt{k_1}x}\right)+\frac{k_2}{k_1}\left(e^{-\sqrt{k_1}x}-1\right)\\
+											&= 2A\senh(\sqrt{k_1}x)+\frac{k_2}{k_1}\left(e^{-\sqrt{k_1}x}-1\right)
+	\intertext{Aplicando $\widecheck{y}(L,s)=0$, tenemos:}
+	\widecheck{y}(L,s)&= 2A\senh(\sqrt{k_1}L)+\frac{k_2}{k_1}\left(e^{-\sqrt{k_1}L}-1\right)=0
 \end{align*}
+Implica:
+$$A=\frac{k_2\left(1-e^{-\sqrt{k_1}L}\right)}{2k_1\senh(\sqrt{k_1}L)}$$
+
+Entonces:
+
+\begin{align*}
+	\widecheck{y}(x,s)&= \left(\frac{k_2\left(1-e^{-\sqrt{k_1}L}\right)}{k_1\senh(\sqrt{k_1}L)}\right)\senh(\sqrt{k_1}x)+\frac{k_2}{k_1}\left(e^{-\sqrt{k_1}x}-1\right)
+	\intertext{Sustituyendo a las constantes originales:}
+	&= \left(\frac{F_o}{\rho s^3}\right)\left(\frac{1-e^{-\frac{s}{c}L}}{\senh(\frac{s}{c}L)}\right)\senh\left(\frac{s}{c}x\right)+\left(\frac{F_o}{\rho s^3}\right)\left(e^{-\frac{s}{c}x}-1\right)\\
+	&=  \left(\frac{F_o}{\rho s^3}\right)\left(\frac{1-e^{-\frac{s}{c}L}}{\senh(\frac{s}{c}L)}\right)\senh\left(\frac{s}{c}x\right)-\left(\frac{F_o}{\rho s^3}\right)\left(1-e^{-\frac{s}{c}x}\right)
+\end{align*}
+
+Entonces, 
+
+\begin{align*}
+	y(x,s)&=\left(\frac{F_o}{\rho s^3}\right)\iLaplace{\left(\frac{1-e^{-\frac{s}{c}L}}{\senh(\frac{s}{c}L)}\right)\senh\left(\frac{s}{c}x\right)-\left(1-e^{-\frac{s}{c}x}\right)}\\
+	&= \left(\frac{F_o}{\rho s^3}\right)\iLaplace{\frac{(1-e^{-\frac{s}{c}L})\senh(\frac{s}{c}x)-\senh(\frac{s}{c}L)+\senh(\frac{s}{c}L)e^{-\frac{s}{c}x}}{\senh(\frac{s}{c}L)}}\\
+	&=\left(\frac{F_o}{\rho s^3}\right)\iLaplace{\frac{(1-e^{-\frac{s}{c}L})\senh(\frac{s}{c}x)-\senh(\frac{s}{c}L)+\senh(\frac{s}{c}L)e^{-\frac{s}{c}x}}{\senh(\frac{s}{c}L)}}
+	\intertext{Luego del desarrollo algebraico de la forma exponencial de los senos hipérbolicos:}
+	&=-\left(\frac{F_o}{\rho s^3}\right)\iLaplace{\frac{\senh(s\frac{x-L}{c})}{\senh(s\frac{L}{c})}} \text{ (resolver con convolución.)}
+\end{align*}
+
+
+\begin{tcolorbox}[colback=gray!15,colframe=black!1!black,title=Caso no acotado (me había olvidado que era acotado y ya lo había hecho :'v)]
 Ahora notamos que, mientras $e^{\sqrt{k_1}x}\to \infty$ y $x\to \infty$, entonces $A=0$. Por lo tanto: 
 
 \begin{align*}
 	\widecheck{y}(x,s)&=\left(\frac{k_2}{k_1}\right)e^{-\sqrt{k_1}x}-\frac{k_2}{k_1}
-	\intertext{Sustituyimos a sus variables originales $k_1$ y $k_2$: }
+	\intertext{Sustituimos a sus variables originales $k_1$ y $k_2$: }
 										&= \left(\frac{-F_o/(c^2\rho s)}{s^2/c^2}\right)e^{-\sqrt{s^2/c^2}x}-\frac{-F_o/(c^2\rho s)}{s^2/c^2}\\
 										&= -\left(\frac{F_o}{\rho s^3}\right)e^{-\frac{s}{c}x}+\left(\frac{F_o}{\rho s^3}\right)
 \end{align*}
@@ -79,7 +107,7 @@ Aplicando la trasnformada inversa de Laplace, se tiene:
 $$y(x,t)=\iLaplace{\widecheck{y}(x,s)}=\iLaplace{\left(\frac{F_o}{\rho s^3}\right)-\left(\frac{F_o}{\rho s^3}\right)e^{-\frac{s}{c}x}}=$$
 $$=\frac{F_o}{\rho}\iLaplace{\frac{1}{s^3}}-\frac{F_o}{\rho}\iLaplace{\frac{1}{s^3}\cdot e^{-\frac{s}{c}x}}=$$
 $$=\frac{F_o}{\rho}\cdot \frac{t^2}{2}-\frac{F_o}{2\rho}\left(t-\frac{x}{c}\right)^2H\left(t-\frac{x}{c}\right)$$
-
+\end{tcolorbox}
 
 
 \end{solution}

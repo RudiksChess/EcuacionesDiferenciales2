@@ -30,6 +30,7 @@ Con las condiciones: $ x>0,  t>0$, y tal que $$u(0, t)=1, \qquad u(x, 0)=0$$
 		\widecheck{u}(x,s) &= \frac{1}{s}e^{(-\sqrt{s}x)}
 		\intertext{La solución es:}
 		u(x,t)&=  \iLaplace{u(x,s)}(t)\\ 
-		&=\iLaplace{\frac{1}{s}e^{(-\sqrt{s}x)}}
+		&=\iLaplace{\frac{1}{s}e^{(-\sqrt{s}x)}}\\
+		&= erfc\left(\frac{x}{2\sqrt{t}}\right)
 \end{align*}
 \end{solution}
