@@ -1,0 +1,23 @@
+\section{Problema 4.} Resuelva:
+$$\frac{\partial u}{\partial t} = \frac{\partial ^2 u}{\partial x^2}, \qquad -\infty<x<\infty, t>0.$$
+Sujeta a: $u(x,0)=e^{-|x|}$
+
+\begin{solution}
+	Aplicando transformada de Fourier. 
+	\begin{align*}
+		\mathcal{F}\left\{\frac{\partial u}{\partial t}\right\}=\mathcal{F}\left\{\frac{\partial ^2 u}{\partial x^2}\right\}\\
+		\hat{u}(w,t)&=(iw)^2\hat{u}(w,t) \\
+	\hat{u}(w,t)	&= -w^2\hat{u}(w,t)
+	\end{align*}
+Entonces, tenemos: 
+$$\hat{u}'(w,t)+w^2\hat{u}(w,t)=0.$$
+La solución de la EDO: 
+$$	\hat{u}(w,t)=A_w\cos(wt)+B_w\sen (wt) $$
+Aplicando la condición $u(x,0)=e^{-|x|}\implies \hat{u}(w,0)=\frac{2}{w^2+1}$:
+
+$$\hat{u}(w,0)=A_w=\frac{2}{w^2+1}.$$
+Entonces, tenemos: 
+$$	\hat{u}(w,t)=\left(\frac{2}{w^2+1}\right)\cos(wt)+B_w\sen (wt) $$
+Implica que la solución: 
+$$u(w,0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\left[\left(\frac{2}{w^2+1}\right)\cos(wt)+B_w\sen (wt)\right]e^{iwx}dw.$$
+\end{solution}

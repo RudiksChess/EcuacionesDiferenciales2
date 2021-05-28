@@ -1,0 +1,30 @@
+\section{Problema 1.} Resuelva: 
+$$\frac{\partial u}{\partial t^2}=a^2\frac{\partial^2}{\partial x^2}, \qquad x>0, t,0$$
+Sujeta a: $u(0,t)=f(t), \quad u(x,0)=0, \lim_{x\to \infty}u(x,t)=0, \frac{\partial u}{\partial t}(x,0)=0$.
+\begin{solution}
+Aplicando la transformada de Laplace: 
+\begin{align*}
+	\Laplace{\frac{\partial u}{\partial t^2}}&=a\Laplace{\frac{\partial^2}{\partial x^2}}\\
+	s^2 \widehat{u}(x,s)-su(x,0)-u'(x,0) &= a^2 \widehat{u}''(x,s)\\
+	s^2  \widehat{u} -0 -0 &= a^2 \widehat{u}''(x,s)
+	\intertext{Aplicando las condiciones: }
+	s^2  \widehat{u} &= a^2 \widehat{u}''\\
+	a^2 \widehat{u}'' -s^2  \widehat{u} &= 0\\
+	 \widehat{u}'' -\left(\frac{s}{a}\right)^2  \widehat{u} &= 0
+\end{align*}
+
+\linea 
+
+Resolviendo la EDO: 
+
+$$\widehat{u}(x,s)=Ae^{\frac{s}{a}x}+Be^{-\frac{s}{a}x}$$
+Aplicando $\lim_{x\to\infty}\widehat{u}(x,s)=0$, $B$ se hace 0:
+$$\lim_{x\to\infty}\widehat{u}(x,s)=\underbrace{\lim_{x\to\infty} \left(Ae^{\frac{s}{a}x}+Be^{-\frac{s}{a} x}\right)}_{\text{A=0, para que se cumpla la condición.}}=0$$
+Entonces 
+$$\widehat{u}(x,s)=Be^{\frac{s}{a}x}$$
+Aplicando $\widehat{u}(0,s)=\widehat{f}(s)$, tenemos: 
+$$\widehat{u}(0,s)=B=\widehat{f}(s)$$
+Por lo que tenemos: 
+$$\widehat{u}(x,s)=\widehat{f}(s)e^{-\frac{s}{a}x}$$
+$$u(x,s)=\iLaplace{\widehat{u}(x,s)}=\iLaplace{\widehat{f}(s)e^{-\frac{s}{a}x}}=f\left(t-\frac{x}{a}\right)H\left(t-\frac{x}{a}\right).$$
+\end{solution}

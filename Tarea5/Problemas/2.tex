@@ -1,0 +1,30 @@
+
+\section{Problema 2.} Resuelva: 
+$$\frac{\partial ^2 u}{\partial t^2}= a^2\frac{\partial ^2 u}{\partial x^2}, \quad 0<x<L, t>0.$$
+Sujeta a: $u(0,t)=0, \frac{\partial u}{\partial x}(L,t)=K$ y con $u(x,0)=0, \frac{\partial u}{\partial t}(x,0)=0.$
+
+\begin{solution}
+\begin{align*}
+	\Laplace{\frac{\partial ^2 u}{\partial t^2}} &= a^2 \Laplace{\frac{\partial ^2 u}{\partial x^2}}\\
+	s^2\widehat{u}(x,s)-su(x,0)-u'(x,0) &= a^2\widehat{u}''(x,s)\\
+	s^2\widehat{u}(x,s)-0- 0&= a^2\widehat{u}''(x,s)\\
+	a^2\widehat{u}''(x,s)-s^2\widehat{u}(x,s)&= 0\\
+	\widehat{u}''(x,s)-\left(\frac{s}{a}\right)^2\widehat{u}(x,s)&= 0
+\end{align*}
+La solución de la EDO:
+$$\widehat{u}(x,s) = Ae^{\frac{s}{a}x}+Be^{-\frac{s}{a}x}$$
+Tenemos la condición $\widehat{u}(0,t)=0$:
+$$\widehat{u}(0,t)=Ae^{\frac{s}{a}x}-Ae^{-\frac{s}{a}x}=A\left(e^{\frac{s}{a}x}-e^{-\frac{s}{a}x}\right)=2A\senh\left(\frac{s}{a}x\right)$$
+Aplicando la condición $\frac{\partial u}{\partial x }(L,t)=K$: 
+\begin{align*}
+	\widehat{u}'(x,t) &= A\left(\frac{s}{a}e^{\frac{s}{a}x}+\frac{s}{a}e^{-\frac{s}{a}x}\right)\\
+									&= \frac{2As}{a}\cosh\left(\frac{s}{a}x\right)\\
+	\widehat{u}'(L,t) &= \frac{2As}{a}\cosh\left(\frac{s}{a}L\right) =\frac{k}{s}
+\end{align*}
+$$A=\frac{aK}{2s^2\cosh\left(\frac{s}{a}L\right)}$$
+Entonces, tenemos: 
+$$\widehat{u}(x,s)=\frac{aK}{s^2\cosh\left(\frac{s}{a}L\right)}\senh\left(\frac{s}{a}x\right)$$
+Entonces, la solución: 
+$$u(x,t)=\iLaplace{\frac{aK\senh\left(\frac{s}{a}x\right)}{s^2\cosh\left(\frac{s}{a}L\right)}}$$
+
+\end{solution}

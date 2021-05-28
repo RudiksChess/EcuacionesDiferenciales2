@@ -1,0 +1,53 @@
+\section{Problema 3.}  Resuelva: 
+$$\frac{\partial u}{\partial t}=\frac{\partial ^2 u}{\partial x^2}, \qquad 0<x<L, t>0$$
+Sujeta a: $u(0,t)=0, u(L,t)=0, u(x,0)=1$.
+\begin{solution}
+\begin{align*}
+	\Laplace{\frac{\partial u}{\partial t}}&=\Laplace{\frac{\partial ^2 u}{\partial x^2}}\\
+	s\widehat{u}(x,s)-u(x,0) &= \widehat{u}''(x,s)\\
+		s\widehat{u}(x,s)-1&= \widehat{u}''(x,s)\\
+		 \widehat{u}''(x,s)- s\widehat{u}(x,s)&= -1
+\end{align*}
+
+\linea 
+
+$$\widehat{u}(x,s)=\widehat{u}_H(x,s)+\widehat{u}_P(x,s)$$
+
+\linea 
+
+Caso homógeneo:
+
+$$\widehat{u}''_H(x,s)-s\widehat{u}(x,s)=0$$
+
+\linea 
+
+Caso particular 
+
+$$\widehat{u}''_P(x,s)-s\widehat{u}_P(x,s)=-1$$
+
+Se propocede con coeficientes indeterminados, se propone $\widehat{u}_P=c$
+
+\begin{align*}
+	\frac{d}{dx^2}c-sc=-1 \implies 0-sc=-1\implies c=\frac{1}{s}\implies \widehat{u}_P(x,s)=\frac{1}{s}.
+\end{align*}
+Solución general: 
+$$\widehat{u}(x,s)=Ae^{\sqrt{s}x}+Be^{-\sqrt{s}x}+\frac{1}{s}.$$
+
+Aplicando $\widehat{u}(0,s)=0$, entonces: 
+
+$$\widehat{u}(0,s)=A+B+\frac{1}{s}=0\implies B= -\left(\frac{As+1}{s}\right)$$
+Implica que 
+$$\widehat{u}(x,s)=Ae^{\sqrt{s}x}-\left(\frac{As+1}{s}\right)e^{-\sqrt{s}x}+\frac{1}{s}=2A\senh\left(\sqrt{s}x\right)+\frac{1}{s}\left(1-e^{-\sqrt{s}x}\right).$$
+
+Aplicando $\widehat{u}(L,s)=0$, entonces: 
+$$\widehat{u}(L,s)=2A\senh\left(\sqrt{s}L\right)+\frac{1}{s}\left(1-e^{-\sqrt{s}L}\right)\implies A=\frac{e^{-\sqrt{s}L}-1}{2s\senh\left(\sqrt{s}L\right)}.$$
+
+Implica: 
+$$\widehat{u}(x,s)=\left(\frac{e^{-\sqrt{s}L}-1}{s\senh\left(\sqrt{s}L\right)}\right)\senh\left(\sqrt{s}x\right)+\frac{1}{s}\left(1-e^{-\sqrt{s}x}\right).$$
+
+Entonces, la solución es: 
+
+$$u(x,t)=\iLaplace{\hat{u}(x,s)}=\iLaplace{\left(\frac{e^{-\sqrt{s}L}-1}{s\senh\left(\sqrt{s}L\right)}\right)\senh\left(\sqrt{s}x\right)+\frac{1}{s}\left(1-e^{-\sqrt{s}x}\right)}$$
+
+
+\end{solution}
